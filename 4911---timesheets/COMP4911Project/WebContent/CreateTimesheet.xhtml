@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>New Timesheet</title>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<h:body id="bgImage2">
+	<h:form>
+		<b:container>
+			<div id="header">
+				<ui:insert name="header">
+					<ui:include src="CommonHeader.xhtml" />
+				</ui:insert>
+			</div>
+		</b:container>
+	</h:form>
+	<h:form>
+		<b:container>
+			<h1>Timesheets</h1><br/>
+			<h:dataTable id="test" styleClass="table table-striped resizing" value="#{test.timesheet.timeSheetRows}"
+				var="item" border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rows" />
+					</f:facet>
+					<h:outputText value="#{test.getTimeSheetRowNumber(item)}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Project Number" />
+					</f:facet>
+					<b:inputText value="#{item.projectId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Work Package" />
+					</f:facet>
+					<b:inputText value="#{item.workpackId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Saturday" />
+					</f:facet>
+					<b:inputText id ="saturday" value="#{item.satHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="saturday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Sunday" />
+					</f:facet>
+					<b:inputText id = "sunday" value="#{item.sunHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="sunday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Monday" />
+					</f:facet>
+					<b:inputText id = "monday" value="#{item.monHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="monday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tuesday" />
+					</f:facet>
+					<b:inputText id = "tuesday" value="#{item.tuesHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="tuesday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Wednesday" />
+					</f:facet>
+					<b:inputText id = "wednesday" value="#{item.wedHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="wednesday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Thursday" />
+					</f:facet>
+					<b:inputText id = "thursday" value="#{item.thursHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="thursday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Friday" />
+					</f:facet>
+					<b:inputText id = "friday" value="#{item.friHrs}">
+                        <f:validateDoubleRange minimum="0.0" maximum="24.0" />
+                    </b:inputText>
+                    <h:message for="friday" style="color:red" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Notes" />
+					</f:facet>
+					<b:inputText value="#{item.notes}" />
+				</h:column>
+				<h:column>
+					<h:commandButton value="Delete"
+						action="#{test.deleteTimesheetRow(item, 'CreateTimesheet')}"/>
+				</h:column>
+			</h:dataTable>
+			<h:commandButton class="btn btn-default" value="Add Row" action='#{test.createRow("CreateTimesheet")}'></h:commandButton>
+			<h:commandButton class="btn btn-default" value="Save Timesheet" action="#{test.createTimesheet}"></h:commandButton>
+			<h:commandButton styleClass="btn btn-default" value="Cancel" action="#{test.cancelCreateTimesheet}"></h:commandButton>
+		</b:container>
+	</h:form>
+</h:body>
+</html>
